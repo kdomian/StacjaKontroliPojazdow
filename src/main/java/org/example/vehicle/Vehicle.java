@@ -29,6 +29,6 @@ public abstract class Vehicle {
         return plateNumber;
     }
     public String getDescription(){
-        return " BRAND:" + brand + ", MODEL:" + model + ", YEAR:" + year + ", PLATE NUMBER:" + plateNumber;
+        return "VEHICLE TYPE:" + this.getClass().getSimpleName() + ", BRAND:" + brand + ", MODEL:" + model + ", YEAR:" + year + ", PLATE NUMBER:" + plateNumber;
     }
 }
