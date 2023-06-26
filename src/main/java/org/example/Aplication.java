@@ -14,10 +14,6 @@ public class Aplication {
         System.out.println(info);
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
-
-
-
-
     }
 
 
