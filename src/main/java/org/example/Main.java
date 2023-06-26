@@ -22,6 +22,9 @@ public class Main {
 
         vehicleList.forEach(vehicle -> {
             System.out.println(vehicle.getDescription());});
+
+        System.out.println("Menu");
+        System.out.println("1-pokaz liste");
     }
 
 }
