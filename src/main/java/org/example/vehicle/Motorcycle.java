@@ -1,7 +1,9 @@
 package org.example.vehicle;
-
+/*
+* Klasa Motorcycle dziedzicząca po klasie Vehicle zawierająca pola do opisu motocykla
+* */
 public class Motorcycle extends Vehicle {
-    private int numWheels;
+    private final int numWheels;
     
     public Motorcycle(String brand, String model, int year, String plateNumber, int numWheels) {
         super(brand, model, year, plateNumber);

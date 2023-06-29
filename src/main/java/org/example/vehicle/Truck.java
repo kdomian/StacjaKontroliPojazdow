@@ -1,7 +1,9 @@
 package org.example.vehicle;
-
+/*
+* Klasa Truck dziedzicząca po klasie Vehicle zawierająca pola do opisu ciężarówki
+* */
 public class Truck extends Vehicle {
-    private double maxLoad;
+    private final double maxLoad;
     
     public Truck(String brand, String model, int year, String plateNumber, double maxLoad) {
         super(brand, model, year, plateNumber);

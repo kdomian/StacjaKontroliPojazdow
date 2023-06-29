@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//Klasa Aplication zawierająca główną logikę programu
 public class Aplication {
     private final List<Vehicle> vehicleList;
 
@@ -54,7 +55,7 @@ public class Aplication {
             return null;
         }
     }
-
+    //Wyszukiwanie pojazdu po numerze rejestracyjnym
     private Vehicle findVehicleByNumberPlate(String plateNumber) {
         Vehicle vehicle = null;
         for (Vehicle v : vehicleList) {
@@ -66,6 +67,7 @@ public class Aplication {
         return vehicle;
     }
 
+    //Wyświetlanie listy pojazdów
     public void viewVehicleList(){
         System.out.println("Lista pojazdów");
         if(vehicleList.isEmpty()){
@@ -76,8 +78,8 @@ public class Aplication {
             }
         }
     }
-    //Dodawanie nowego pojazdu
 
+    //Dodawanie nowego pojazdu
     public void addNewVehicle(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Dodawanie nowego pojazdu");
@@ -199,15 +201,6 @@ public class Aplication {
         }
     }
 
-    public void addVehiclesToTest() {
-        vehicleList.add(new Car("Ford", "Focus", 2010, "KR12345", 5));
-        vehicleList.add(new Car("Opel", "Astra", 2015, "KR54321", 5));
-        vehicleList.add(new Motorcycle("Yamaha", "R1", 2018, "KR67890", 2));
-        vehicleList.add(new Motorcycle("Honda", "CBR", 2019, "KR09876", 2));
-        vehicleList.add(new Truck("Scania", "R500", 2017, "KR13579", 20000));
-        vehicleList.add(new Truck("Volvo", "FH16", 2016, "KR24680", 25000));
-    }
-
     //zapis listy pojazdów do pliku
     public void saveVehiclesToFile(){
         try {
@@ -222,7 +215,7 @@ public class Aplication {
     }
 
 
-    //metoda zwracająca odczytane z pliku pojazdy, a jeżeli nie to tworzy nowy dokument
+    //metoda zwracająca odczytane z pliku pojazdy, a jeżeli plik nie istnieje to tworzy nowy dokument
     public List<Vehicle> readVehiclesFromFile() {
         File file = new File("vehicles.txt");
         if (!file.exists()) {

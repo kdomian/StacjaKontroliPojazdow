@@ -1,7 +1,9 @@
 package org.example.vehicle;
 
 import java.io.Serializable;
-
+/*
+* Klasa abstrakcyjna Vehicle zawierająca pola i metody wspólne dla wszystkich pojazdów
+* */
 public abstract class Vehicle implements Serializable {
     private String brand;
     private String model;
@@ -30,6 +32,9 @@ public abstract class Vehicle implements Serializable {
     public String getPlateNumber() {
         return plateNumber;
     }
+    /*
+    * Metoda abstrakcyjna getDescription() zwracająca opis pojazdu. W zależności od tego jaki pojazd zostanie utworzony
+    * */
     public String getDescription(){
         return "VEHICLE TYPE:" + this.getClass().getSimpleName() + ", BRAND:" + brand + ", MODEL:" + model + ", YEAR:" + year + ", PLATE NUMBER:" + plateNumber;
     }

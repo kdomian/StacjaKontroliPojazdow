@@ -1,9 +1,11 @@
 package org.example.vehicle;
 
 import org.example.vehicle.Vehicle;
-
+/*
+* Klasa Car dziedzicząca po klasie Vehicle zawierająca pola do opisu samochodu
+* */
 public class Car extends Vehicle {
-    private int numDoors;
+    private final int numDoors;
     
     public Car(String brand, String model, int year, String plateNumber, int numDoors) {
         super(brand, model, year, plateNumber);
