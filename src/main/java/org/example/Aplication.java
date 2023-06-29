@@ -86,11 +86,15 @@ public class Aplication {
         String model = scanner.nextLine();
         System.out.println("Podaj rok produkcji pojazdu");
         int year = scanner.nextInt();
-        scanner.nextLine();
-        //TODO: sprawdzenie czy rok produkcji jest liczbą
+        scanner.nextLine(); //bez tej linijki program chciał pobrać numer rejestracyjny od razu po roku produkcji
         System.out.println("Podaj numer rejestracyjny pojazdu");
-        //TODO: sprawdzenie czy numer rejestracyjny nie istnieje już w systemie
         String plateNumber = scanner.nextLine();
+        //sprawdzanie czy numer rejestracyjny nie jest już zajęty
+        Vehicle vehicle = findVehicleByNumberPlate(plateNumber);
+        if(vehicle != null){
+            System.out.println("Pojazd o podanym numerze rejestracyjnym już istnieje");
+            return;
+        }
         System.out.println("Podaj typ pojazdu");
         System.out.println("1. Samochód");
         System.out.println("2. Motocykl");
