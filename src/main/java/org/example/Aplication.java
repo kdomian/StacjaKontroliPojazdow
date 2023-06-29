@@ -5,6 +5,7 @@ import org.example.vehicle.Motorcycle;
 import org.example.vehicle.Truck;
 import org.example.vehicle.Vehicle;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +14,7 @@ public class Aplication {
     private final List<Vehicle> vehicleList;
 
     public Aplication() {
-        vehicleList = new ArrayList<>();
+        vehicleList = readVehiclesFromFile();
     }
 
     //Wyświetlanie menu głównego
@@ -127,6 +128,7 @@ public class Aplication {
         if(vehicle != null){
             viewEditMenu();
             int option = scanner.nextInt();
+            scanner.nextLine(); //bez tej linijki program chciał pobrać numer rejestracyjny od razu po roku produkcji
             switch (option){
                 case 1:
                     System.out.println("Podaj nową markę");
@@ -146,6 +148,10 @@ public class Aplication {
                 case 4:
                     System.out.println("Podaj nowy numer rejestracyjny");
                     String newPlateNumber = scanner.nextLine();
+                    if(findVehicleByNumberPlate(newPlateNumber) != null){
+                        System.out.println("Pojazd o podanym numerze rejestracyjnym już istnieje");
+                        return;
+                    }
                     vehicle.setPlateNumber(newPlateNumber);
                     break;
             }
@@ -187,6 +193,7 @@ public class Aplication {
                     break;
                 case 5:
                     exit = true;
+                    saveVehiclesToFile();
                     break;
             }
         }
@@ -200,4 +207,44 @@ public class Aplication {
         vehicleList.add(new Truck("Scania", "R500", 2017, "KR13579", 20000));
         vehicleList.add(new Truck("Volvo", "FH16", 2016, "KR24680", 25000));
     }
+
+    //zapis listy pojazdów do pliku
+    public void saveVehiclesToFile(){
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream("vehicles.txt");
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(vehicleList);
+            objectOutputStream.close();
+            fileOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //metoda zwracająca odczytane z pliku pojazdy, a jeżeli nie to tworzy nowy dokument
+    public List<Vehicle> readVehiclesFromFile() {
+        File file = new File("vehicles.txt");
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            List<Vehicle> vehicles = new ArrayList<>();
+            try {
+                FileInputStream fileInputStream = new FileInputStream("vehicles.txt");
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                vehicles = (List<Vehicle>) objectInputStream.readObject();
+                objectInputStream.close();
+                fileInputStream.close();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            return vehicles;
+        }
+        return new ArrayList<>();
+    }
+
 }
