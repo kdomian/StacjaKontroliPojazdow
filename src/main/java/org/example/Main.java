@@ -7,6 +7,7 @@ public class Main {
          */
         Aplication aplication = new Aplication();
         aplication.run();
+        System.out.println("test");
     }
 
 
